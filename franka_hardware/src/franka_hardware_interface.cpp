@@ -351,6 +351,8 @@ rclcpp::Logger FrankaHardwareInterface::getLogger() {
 hardware_interface::return_type FrankaHardwareInterface::perform_command_mode_switch(
     const std::vector<std::string>& /*start_interfaces*/,
     const std::vector<std::string>& /*stop_interfaces*/) {
+  // why???
+  effort_interface_claimed_ = true;
   if (!effort_interface_running_ && effort_interface_claimed_) {
     std::fill(hw_effort_commands_.begin(), hw_effort_commands_.end(), 0);
     robot_->stopRobot();
